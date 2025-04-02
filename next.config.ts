@@ -7,5 +7,6 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-  output: "export", // This replaces next export
+  output: "export",
+  distDir: "out", // Explicitly set output directory
 };
