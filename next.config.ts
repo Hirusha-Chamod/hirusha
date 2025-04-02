@@ -1,9 +1,12 @@
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  output: "export",
-  basePath: isProd ? "/hirusha" : "",
+  reactStrictMode: true,
   assetPrefix: isProd ? "/hirusha/" : "",
-  trailingSlash: true,
-  images: { unoptimized: true },
+  basePath: isProd ? "/hirusha" : "",
+  images: {
+    unoptimized: true,
+  },
+  output: "export",
+  distDir: "out", // Explicitly set output directory
 };
