@@ -31,4 +31,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
-          destination_dir: ./hirusha # Add this line
