@@ -7,5 +7,5 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-  output: "export",
+  output: "export", // This replaces next export
 };
