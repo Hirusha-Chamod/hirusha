@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background:  #0d1a14;       /* Deep forest dark */
+  --foreground:  #d0e8e0;       /* Soft muted white/silver */
+  --accent:      #88BC95;       /* Sage green — primary highlight */
+  --accent-gold: #f0d090;       /* Muted gold — for important alerts/eyes */
+  --magic-blue:  #8DDEFC;       /* Sky blue — subtle mystical highlights */
+  --magic-purple:#CCD3F0;       /* Lavender — ethereal shadows/glows */
+  --grid-color:  rgba(136, 188, 149, 0.04); /* Sage-tinted grid */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  /* Soft, ancient forest lighting — sage green and pale lavender dust */
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(136, 188, 149, 0.04) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(204, 211, 240, 0.03) 0%, transparent 60%);
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+/* Use IBM Plex Mono for the terminal/ancient catalog feel — add to _document or layout.tsx:
+   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+   Then set font-family: 'IBM Plex Mono', monospace on body */
+
+/* ── Outline text ─────────────────────────────────────────────────────────── */
+.outline-text {
+  -webkit-text-stroke: 1px rgba(208, 232, 224, 0.15); /* Soft silver outline */
+  color: transparent;
+}
+
+.outline-text-amber {
+  -webkit-text-stroke: 1px rgba(240, 208, 144, 0.35); /* Muted gold outline */
+  color: transparent;
+}
+
+/* ── Selection ───────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: var(--background); /* Sage background with dark text */
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 2px; }
+::-webkit-scrollbar-thumb  { background: rgba(136, 188, 149, 0.4); } /* Sage green scrollbar */
+::-webkit-scrollbar-track  { background: transparent; }
+
+/* ── Utilities ───────────────────────────────────────────────────────────── */
+.vertical-text { writing-mode: vertical-rl; }
+
+/* Section label style */
+.section-label {
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* The Leather/Wood Cover Base */
+.book-cover-base {
+  background: #2a1b0a; /* Deep dark wood/leather color */
+  border-radius: 4px;
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.8),
+    inset 0 0 40px rgba(0,0,0,0.5);
+  padding: 12px; /* This creates the "lip" of the cover */
+  transform-style: preserve-3d;
+}
+
+/* Simulated Page Stack (Thickness) */
+.page-stack-right {
+  box-shadow: 
+    4px 0px 0px #d8cab0,
+    8px 0px 0px #c2b295,
+    12px 10px 20px rgba(0,0,0,0.4);
+}
+
+.page-stack-left {
+  box-shadow: 
+    -4px 0px 0px #d8cab0,
+    -8px 0px 0px #c2b295,
+    -12px 10px 20px rgba(0,0,0,0.4);
+}
+
+.perspective-container {
+  perspective: 2500px;
+  transform-style: preserve-3d;
+}
+
+.book-leaf {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 2;
+}
+
+.leaf-front, .leaf-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.leaf-back {
+  transform: rotateY(180deg);
 }

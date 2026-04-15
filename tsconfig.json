@@ -34,7 +34,7 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "out/types/**/*.ts"
-  ],
+, "components/canvas/Familiar.jsx"  ],
   "exclude": [
     "node_modules"
   ]
